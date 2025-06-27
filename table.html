@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSV Viewer</title>
+
+<!-- DataTables & dependencies -->
+<link rel="stylesheet"
+      href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
+
+<!-- Moment.js + plug-in for proper date/time sorting -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/2.0.3/sorting/datetime-moment.js"></script>
+
+<style>
+  .table-container {
+    width: fit-content;
+    margin: 2rem auto;
+  }
+  table.dataTable tbody tr:hover {
+    background:#f6f6f6;
+  }
+</style>
+</head>
+<body>
+  <h2>CSV Data (search & sort enabled)</h2>
+
+  <div class="table-container"><table border="1" class="dataframe display nowrap" id="myTable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Starting Date</th>
+      <th>Starting Time</th>
+      <th>End Date</th>
+      <th>End Time</th>
+      <th>Monitored Time</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2025-06-27</td>
+      <td>14:27:55</td>
+      <td>2025-06-27</td>
+      <td>14:28:15</td>
+      <td>00:00:45</td>
+      <td>test</td>
+    </tr>
+  </tbody>
+</table></div>
+
+  <script>
+    $.fn.dataTable.moment('YYYY-MM-DD');
+    $.fn.dataTable.moment('HH:mm:ss');
+
+    $(document).ready(function () {
+      $('#myTable').DataTable({
+        scrollX: true,
+        order: [[0, 'asc']],          // sort by Starting Date first
+        columnDefs: [
+          { type:'datetime', targets:[0,1,2,3,4] }
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

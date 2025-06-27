@@ -15,6 +15,9 @@ from torchvision.transforms import Compose, Resize, Grayscale, ToTensor, Normali
 import subprocess
 import os
 
+from datetime import datetime, timedelta
+
+now = datetime.now()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -190,6 +193,7 @@ cmd = [
     "-movflags", "+faststart", "-flush_packets", "1",
     "store/%d.mp4"
 ]
+timeout = 300
 
 # rtsp://localhost:8554/mystream
 
@@ -204,14 +208,29 @@ try:
     last_time = 0
     calc_time = 0
     cap=None
+    # timeout = 5
 
+    # try:
+    #     proc.wait(timeout=timeout)
+    # except subprocess.TimeoutExpired:
+    #     print("Timeout reached. Terminating ffmpeg process...")
+    #     proc.terminate()
+    #     try:
+    #         # Give process time to terminate gracefully
+    #         proc.wait(timeout=5)
+    #     except subprocess.TimeoutExpired:
+    #         print("Force killing ffmpeg process...")
+    #         proc.kill()
+    count=0
     while (proc.poll() is None):
         
         if os.path.exists(f"store/{file_name}.mp4"):
-            print("yes")
+            print(count)
+            count+=1
 
-
-            time.sleep(15)
+            if second == 0:
+                time.sleep(10)
+            time.sleep(7)
 
             cap = cv2.VideoCapture(f"store/{file_name}.mp4")
 
@@ -283,6 +302,17 @@ finally:
         file_path = os.path.join(folder_path, filename)
         if os.path.isfile(file_path):
             os.remove(file_path)
+
+    import logger
+    file_path = "data.csv"
+    end = datetime.now()
+    start_date = now.date().isoformat()
+    start_time = now.strftime("%H:%M:%S")
+    end_date = end.date().isoformat()
+    end_time   = end.strftime("%H:%M:%S")
+    monitored_time = logger.convert_seconds(total_time)
+    event_type = "test" 
+    logger.logger(file_path, start_date, start_time, end_date, end_time, monitored_time, event_type) 
     
 
 

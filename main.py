@@ -1,7 +1,9 @@
 import tui
 
 menu_data = [
-    "video_ffmpeg",
+    "camera_ffmpeg",
+    # "camera_opencv",
+    "history", fr   
     "test",
     "Exit",  # Leaf item – still quits immediately
 ]
@@ -14,10 +16,13 @@ while (option != "Exit"):
     app.run()
     option = app.selected_option
 
-    if option == "test":
+    if option == "camera_ffmpeg":
+        import camera_ffmpeg
+    elif option == "history":
+        import webpage
+    elif option == "test":
         import test
-    elif option == "video_ffmpeg":
-        import video_ffmpeg
+
 
 
 

@@ -11,6 +11,10 @@ import const
 from torch.cuda.amp import autocast
 from torchvision.transforms import Compose, Resize, Grayscale, ToTensor, Normalize
 from transformers import SwinModel
+from datetime import datetime, timedelta
+
+now = datetime.now()
+
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -237,3 +241,13 @@ while cap.isOpened():
 cap.release()
 cv2.destroyAllWindows()
 
+import logger
+file_path = "data.csv"
+end = datetime.now()
+start_date = now.date().isoformat()
+start_time = now.strftime("%H:%M:%S")
+end_date = end.date().isoformat()
+end_time   = end.strftime("%H:%M:%S")
+monitored_time = logger.convert_seconds(total_time)
+event_type = "test" 
+logger.logger(file_path, start_date, start_time, end_date, end_time, monitored_time, event_type) 
