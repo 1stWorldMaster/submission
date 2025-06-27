@@ -3,7 +3,7 @@ import tui
 menu_data = [
     "camera_ffmpeg",
     # "camera_opencv",
-    "history", fr   
+    "history",
     "test",
     "Exit",  # Leaf item – still quits immediately
 ]
