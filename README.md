@@ -24,3 +24,27 @@ model.py will give the rapper like
     video_feed
     camera_feed
     
+1. Build the model use transfer in process
+	In this model will launch the other propcess for streaming the person and another process for processing of the person. 
+	 	use cv2
+	
+2. Build store frame and run model
+	will sotre the frame of the video and run the model on inference for every frame
+		use cv2
+	
+3. write video and run
+	use ffmpeg or cv to load the video of 10 secs and run the model inference on that model (checking frame or model is not updated upon certain time turn off the model)
+		-use ffmpeg - video_ffmpeg
+		-use cv2
+
+
+
+
+
+
+
+proccall =  ffmpeg stream
+while proc.proll is not None:
+    if file_name is available
+        file_name = (just increase the number)
+            check normally for the video

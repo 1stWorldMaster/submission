@@ -1,7 +1,7 @@
 import tui
 
 menu_data = [
-    "camera",
+    "video_ffmpeg",
     "test",
     "Exit",  # Leaf item – still quits immediately
 ]
@@ -16,8 +16,8 @@ while (option != "Exit"):
 
     if option == "test":
         import test
-    if option == "camera":
-        import camera
+    elif option == "video_ffmpeg":
+        import video_ffmpeg
 
 
 
