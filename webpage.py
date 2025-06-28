@@ -44,7 +44,7 @@ def build_html_from_csv(csv_path: str = "data.csv",
         "start_time":      "Starting Time",
         "end_date":        "End Date",
         "end_time":        "End Time",
-        "monitored_time":  "Monitored Time",   # ← display label
+        "monitored_time":  "Productive Time",   # ← display label
         "type":            "Type"
     }, inplace=True)
 
@@ -59,7 +59,7 @@ def build_html_from_csv(csv_path: str = "data.csv",
 <html>
 <head>
 <meta charset="utf-8">
-<title>CSV Viewer</title>
+<title>History</title>
 
 <!-- DataTables & dependencies -->
 <link rel="stylesheet"
@@ -82,7 +82,7 @@ def build_html_from_csv(csv_path: str = "data.csv",
 </style>
 </head>
 <body>
-  <h2>CSV Data (search & sort enabled)</h2>
+  <h2>History</h2>
 
   {wrapped_table}
 

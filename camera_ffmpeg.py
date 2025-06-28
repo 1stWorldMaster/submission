@@ -311,7 +311,7 @@ finally:
     end_date = end.date().isoformat()
     end_time   = end.strftime("%H:%M:%S")
     monitored_time = logger.convert_seconds(total_time)
-    event_type = "test" 
+    event_type = "camera" 
     logger.logger(file_path, start_date, start_time, end_date, end_time, monitored_time, event_type) 
     
 
