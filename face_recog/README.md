@@ -80,7 +80,4 @@ run the main.py
 4. now check for venv
 5. if not present load the package and downlaod all the requirements
 6. activate the venv
-7. check for the model in the folder
-8. if not available downlaod it their
-9. run test check tell everything working fine
-10. run python main.py
+7. run python main.py
